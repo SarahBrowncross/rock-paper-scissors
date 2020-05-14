@@ -13,6 +13,24 @@ function computerPlay() {
     }
 }
 
-console.log(computerPlay());
+let playerPlay = prompt("Choose rock, paper or scissors");
+playerPlay = playerPlay.toLowerCase();
 
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
+        return "it's a draw";
+    }
+    else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "scissors" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "rock") {
+        return "You win!";
+    }
+    else {
+        return "You lose"
+    }
+
+}
+
+const computerSelection = computerPlay()
+console.log(computerSelection);
+console.log(playerPlay);
+console.log(playRound(playerPlay, computerSelection));
 
