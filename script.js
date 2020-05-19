@@ -1,5 +1,4 @@
 
-
 function computerPlay() {
     let generator = Math.random() * 3;
     if (generator < 1) {
@@ -13,52 +12,45 @@ function computerPlay() {
     }
 }
 
+document.getElementById('rock').addEventListener('click', onButtonClick);
 
+document.getElementById('paper').addEventListener('click', onButtonClick);
 
+document.getElementById('scissors').addEventListener('click', onButtonClick);
+
+let computerScore = 0;
+let playerScore = 0;
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        return 0;
+        
     }
     else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "scissors" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "rock") {
-        return 1;
+        playerScore++;
     }
     else {
-        return -1;
+        computerScore++;
     }
 
 }
 
-let winCount = 0;
-let gameCount = 5;
 
-for (let i = 0; i < gameCount; i++) {
-    let playerPlay = prompt("Choose rock, paper or scissors");
-    playerPlay = playerPlay.toLowerCase();
-    const computerSelection = computerPlay()
-    let result = playRound(playerPlay, computerSelection);
-    winCount = winCount + result;
-    if (result === 0) {
-        console.log("draw");
+
+function onButtonClick(event) {
+    let playerSelection = event.target.id;
+    const computerSelection = computerPlay();
+    playRound(playerSelection, computerSelection);
+    document.getElementById("result").textContent = "Your score is " + playerScore + ". Computer score is " + computerScore;
+    if(playerScore >= 5) {
+        document.getElementById("result").textContent = "You have won!";
     }
-    else if (result === 1) {
-        console.log("win");
+    if(computerScore >= 5) {
+        document.getElementById("result").textContent = "You have lost";
     }
-    else if (result === -1) {
-        console.log("lose");
     }
-}
-
-if (winCount === 0) {
-    console.log("It's a draw");
-}
-else if (winCount > 0) {
-    console.log("You win!");
-}
-else {
-    console.log("You lose");
-}
 
 
+
+    
 
 
